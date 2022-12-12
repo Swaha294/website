@@ -27,6 +27,7 @@ enableEmoji = true
     # one of: https://xyproto.github.io/splash/docs/ 
     style = "github"
     
+    
 [params]
   orgName = "Swaha Bhattacharya"
   orgLocal = ""
