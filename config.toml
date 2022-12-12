@@ -1,4 +1,4 @@
-baseURL = "https://swahabhattacharya.rbind.io/"
+baseURL = "https://swahabhattacharya.netlify.app/"
 theme = "hugo-apero"
 languageCode = "en"
 title = "Swaha Bhattacharya"
