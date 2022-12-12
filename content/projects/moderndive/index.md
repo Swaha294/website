@@ -8,7 +8,7 @@ summary: The `moderndive` R package consists of datasets and functions for `tidy
 tags:
 - R Packages
 - software
-title: "ipl R Package"
+title: "moderndive R Package"
 links:
 - icon: github
   icon_pack: fab
@@ -16,6 +16,16 @@ links:
   url: https://github.com/moderndive/moderndive
 ---
 
-`ipl` is an R data package that provides data and functions related to the Indian Premier League (IPL) matches and standard cricket statistics. This package allows users to avail of IPL data and conduct analysis of cricketers and IPL teams using functions of this package.
+The `moderndive` R package consists of datasets and functions for [tidyverse](https://www.tidyverse.org/)-friendly introductory linear regression. These tools leverage the well-developed `tidyverse` and `broom` packages to facilitate
+
+  1. Working with regression tables that include confidence intervals
+  
+  2. Accessing regression outputs on an observation level (e.g. fitted/predicted values and residuals)
+  
+  3. Inspecting scalar summaries of regression fit (e.g. R-squared, R-squared adjusted, and mean squared error)
+  
+  4. Visualizing parallel slopes regression models using ggplot2-like syntax.
+  
+This R package is designed to supplement the book “Statistical Inference via Data Science: A ModernDive into R and the Tidyverse” available at [ModernDive.com](https://moderndive.com/). For more background, read our [Journal of Open Source Education paper](https://jose.theoj.org/papers/10.21105/jose.00115).
 
 
