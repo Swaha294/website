@@ -94,18 +94,6 @@ enableEmoji = true
       icon      = "linkedin" # icon name without the 'fa-'
       icon_pack = "fab"
       url       = "https://www.linkedin.com/in/swaha294/"
- # [[params.social]]
-  #    icon      = "facebook-square" # icon name without the 'fa-'
-  #    icon_pack = "fab"
-  #    url       = "https://www.facebook.com/hashtag/ap%C3%A9ro"
- # [[params.social]]
-  #    icon      = "instagram" # icon name without the 'fa-'
-  #    icon_pack = "fab"
-  #    url       = "https://www.instagram.com/explore/tags/apero/"
- # [[params.social]]
-  #    icon      = "twitter" # icon name without the 'fa-'
-  #    icon_pack = "fab"
-  #    url       = "https://twitter.com/hashtag/apéro"
   [[params.social]]
        icon      = "orcid" # icon name without the 'fa-'
        icon_pack = "ai"
@@ -146,12 +134,6 @@ enableEmoji = true
     title = "Projects"
     url = "/projects/"
     weight = 3
-#  [[menu.header]]
- #   name = "Talks"
-#    title = "Talks"
- #   url = "/talk/"
-#    weight = 3
-
 
 
 # see https://gohugo.io/about/hugo-and-gdpr/    
