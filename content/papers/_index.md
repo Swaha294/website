@@ -1,5 +1,5 @@
 ---
-title: Projects
+title: Papers
 description: "These are some papers I have written."
 author: ""
 show_post_thumbnail: true
