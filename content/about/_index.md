@@ -2,7 +2,7 @@
 title: "About me"
 description: |
   Swaha's personal website.
-show_header: true
+show_header: false
 sidebar_left: false
 # Keep this! Do not edit.
 cascade:
