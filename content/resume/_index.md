@@ -1,11 +1,13 @@
 ---
-## Configure sidebar content in narrow column
-author: "Swaha Bhattacharya"
-role: ""
-avatar_shape: rounded # circle, square, rounded, leave blank to exclude
-show_social_links: true # specify social accounts in site config
-audio_link_label: "" # leave blank to exclude
+title: "Resume"
+description: |
+  You can view and download a copy of my resume [here](resume.pdf).
+show_header: false
+sidebar_left: false
+# Keep this! Do not edit.
+cascade:
+  headless: true
 ---
 
 ** index doesn't contain a body, just front matter above.
-See about/list.html in the layouts folder **
+See the header / main / sidebar folders to edit the index.md files **
