@@ -4,7 +4,7 @@ external_link: https://github.com/Swaha294/ipl
 image:
   caption: ''
   focal_point: Smart
-summary: An R data package that contains relational data for the United States 2015-2016 election cycle in the form of pre-loaded datasets and functions.
+summary: An R data package that provides data and functions related to the Indian Premier League (IPL) matches and standard cricket statistics. This package allows users to avail of IPL data and conduct analysis of cricketers and IPL teams using functions of this package.
 tags:
 - R Packages
 - software
