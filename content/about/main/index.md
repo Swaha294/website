@@ -1,17 +1,19 @@
 ---
 ## Configure page content in wide column
-title: "Why apéro?" # leave blank to exclude
-number_featured: 1 # pulling from mainSections in config.toml
+title: "Hello. Thanks for visiting!" 
+number_featured: 0 # pulling from mainSections in config.toml
 use_featured: false # if false, use most recent by date
-number_categories: 3 # set to zero to exclude
+number_categories: 0 # set to zero to exclude
 show_intro: true
+show_outro: false
 intro: |
-  Apéro is a unique kind of casual get-together in French culture, when you gather with friends and get to know each other better over some apéritifs, snacks, and anything in between. A good apéro is one where you'd happily spend a few hours just hanging out.
+  Hi! I am a senior double majoring in Mathematics & Statistical and Data Sciences at Smith College, a historically all women's college in Northampton, Massachusetts. I enjoy learning about data science, statistics, application of mathematical methods, quantitative research, and machine learning methods, among other things. You can learn more about my projects by visiting the [projects](/project/) tab or viewing my [GitHub profile](https://github.com/Swaha294). 
   
-  I hope this theme helps you create your own virtual apéro. A place where you and your site's visitors enjoy spending time, and one that helps folks get to know you better. 
-show_outro: true
-outro: |
-  <i class="fas fa-glass-cheers pr2"></i>Sincere thanks to [Maëlle Salmon](https://masalmon.eu/) for her help naming this Hugo theme!
+  Outside of college, I spend my time singing (my [singing channel](https://www.instagram.com/swa_laalaalaa/)), making LEGO models, reading, learning new instruments, and learning new things.
+  
+  Feel free to contact me via [email](mailto::itsswahabhattacharya@gmail.com) or on [LinkedIn](https://www.linkedin.com/in/swaha294/)!
+
+
 ---
 
 ** index doesn't contain a body, just front matter above.
