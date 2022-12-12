@@ -134,6 +134,11 @@ enableEmoji = true
     title = "Projects"
     url = "/projects/"
     weight = 3
+  [[menu.header]]
+    name = "papers"
+    title = "Papers"
+    url = "/papers/"
+    weight = 4
 
 
 # see https://gohugo.io/about/hugo-and-gdpr/    
