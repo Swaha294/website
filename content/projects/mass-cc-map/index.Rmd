@@ -4,7 +4,8 @@ author: "Swaha Bhattacharya, Naylynn Tañón Reyes, Tint Tha Ra Wun"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
-In March 2023, the Healey-Driscoll administration proposed the MassReconnect program in their budget recommendation for the Fiscal Year 2024. The programaims to make community college free for students aged 25 and older. Keeping this in mind, my team and I created two visualisations to get an insight on POC attendance at community colleges in the state.
+A [Leaflet](https://leafletjs.com/) map visualizing POC attendance in community 
+colleges in Massachusetts. 
 
 ```{r, message=FALSE, include=FALSE}
 library(tidyverse)

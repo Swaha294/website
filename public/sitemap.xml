@@ -20,19 +20,10 @@
     <loc>https://swahabhattacharya.netlify.app/tags/</loc>
     <lastmod>2023-04-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://swahabhattacharya.netlify.app/projects/mass-cc/</loc>
-    <lastmod>2022-04-24T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://swahabhattacharya.netlify.app/projects/ipl/</loc>
     <lastmod>2022-04-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://swahabhattacharya.netlify.app/tags/leaflet-map/</loc>
-    <lastmod>2022-04-24T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://swahabhattacharya.netlify.app/projects/moderndive/</loc>
-    <lastmod>2022-04-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://swahabhattacharya.netlify.app/tags/plotly-visualisation/</loc>
     <lastmod>2022-04-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://swahabhattacharya.netlify.app/papers/sds338/</loc>
@@ -55,6 +46,8 @@
     <loc>https://swahabhattacharya.netlify.app/categories/</loc>
   </url><url>
     <loc>https://swahabhattacharya.netlify.app/projects/mass-cc-map/</loc>
+  </url><url>
+    <loc>https://swahabhattacharya.netlify.app/projects/mass-cc-graph/</loc>
   </url><url>
     <loc>https://swahabhattacharya.netlify.app/resume/</loc>
   </url><url>

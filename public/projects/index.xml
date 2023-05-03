@@ -17,15 +17,6 @@
     </item>
     
     <item>
-      <title>Community College Attendance in Massachusetts</title>
-      <link>https://swahabhattacharya.netlify.app/projects/mass-cc/</link>
-      <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://swahabhattacharya.netlify.app/projects/mass-cc/</guid>
-      <description>In March 2023, the Healey-Driscoll administration proposed the MassReconnect program in their budget recommendation for the Fiscal Year 2024. The programaims to make community college free for students aged 25 and older. Keeping this in mind, my team and I created two visualisations to get an insight on POC attendance at community colleges in the state.</description>
-    </item>
-    
-    <item>
       <title>ipl R Package</title>
       <link>https://swahabhattacharya.netlify.app/projects/ipl/</link>
       <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
@@ -44,11 +35,20 @@
     </item>
     
     <item>
-      <title>Could the MassReconnect Program Change College Education in Massachusetts?</title>
+      <title>Community College Attendance in Massachusetts by County</title>
       <link>https://swahabhattacharya.netlify.app/projects/mass-cc-map/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://swahabhattacharya.netlify.app/projects/mass-cc-map/</guid>
+      <description>In March 2023, the Healey-Driscoll administration proposed the MassReconnect program in their budget recommendation for the Fiscal Year 2024. The programaims to make community college free for students aged 25 and older. Keeping this in mind, my team and I created two visualisations to get an insight on POC attendance at community colleges in the state.</description>
+    </item>
+    
+    <item>
+      <title>Community College Attendance in Massachusetts by Race</title>
+      <link>https://swahabhattacharya.netlify.app/projects/mass-cc-graph/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://swahabhattacharya.netlify.app/projects/mass-cc-graph/</guid>
       <description> </description>
     </item>
     

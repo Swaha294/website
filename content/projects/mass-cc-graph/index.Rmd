@@ -1,0 +1,132 @@
+---
+title: "Community College Attendance in Massachusetts by Race"
+author: "Swaha Bhattacharya, Naylynn Tañón Reyes, Tint Tha Ra Wun"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+A [plotly](https://plotly.com/) graph visualizing enrollment at community colleges 
+in Massachusetts by race.
+
+```{r, message=FALSE, include=FALSE}
+library(tidyverse)
+library(leaflet)
+library(sf)
+library(tmaptools)
+library(readxl)
+library(tidycensus)
+library(leaflegend)
+library(plotly)
+
+# loading in Mass Community Colleges—Annual Full-Time Equivalent (FTE) Enrollment
+mass_cc_race <- read_xlsx("../mass-cc-map/data-raw/CCMinorityHTC.xlsx") 
+# repeating process for mass_cc_race
+for (i in 3:ncol(mass_cc_race)) {
+  
+  mass_cc_race[2, i] = paste("Fall", mass_cc_race[2, i])
+  
+}
+colnames(mass_cc_race) <- mass_cc_race[2, ]
+mass_cc_race <- mass_cc_race[-c(1:2, 138:149), ]
+# turning table to tidy format
+mass_cc_race <- mass_cc_race %>% 
+  pivot_longer(
+    cols = -c(Institution, Race),
+    names_to = "term",
+    values_to = "count"
+  ) %>% 
+  janitor::clean_names()
+mass_cc_race <- mass_cc_race %>% 
+  mutate(
+    count = parse_number(ifelse(count == "*", 2.5, count))
+  )
+mass_cc_race <- mass_cc_race %>% 
+  filter(race != "Total")
+# adding county for each community college
+mass_cc_race <- mass_cc_race %>% 
+  mutate(
+    county = case_when(
+      institution == "Berkshire Community College" ~ "Berkshire County",
+      institution == "Bristol Community College" ~ "Bristol County",
+      institution == "Bunker Hill Community College" ~ "Suffolk County",
+      institution == "Cape Cod Community College" ~ "Barnstable County",
+      institution == "Greenfield Community College" ~ "Franklin County",
+      institution == "Holyoke Community College" ~ "Hampden County",
+      institution == "Mass Bay Community College" ~ "Norfolk County",
+      institution == "Massasoit Community College" ~ "Plymouth County",
+      institution == "Middlesex Community College" ~ "Middlesex County",
+      institution == "Mt. Wachusett Community College" ~ "Worcester County",
+      institution == "North Shore Community College" ~ "Essex County",
+      institution == "Northern Essex Community College" ~ "Essex County",
+      institution == "Quinsigamond Community College" ~ "Worcester County",
+      institution == "Roxbury Community College" ~ "Suffolk County",
+      institution == "Springfield Technical Community College" ~ "Hampden County"
+    )
+  )
+
+ma_cc_attendance <- mass_cc_race %>% 
+  mutate(
+    race = case_when(
+      race == "White" ~ "White",
+      race %in% c("Non Resident Alien", "Not Reported") ~ "Unkown",
+      TRUE ~ "POC"
+    )
+  ) %>% 
+  group_by(term, race) %>% 
+  summarise(
+    enrollment = sum(count)
+  ) %>% 
+  ungroup()
+```
+
+
+```{r, message = FALSE, echo = FALSE}
+vline <- function(x = 0, color = "black", linetype = "dash") {
+  list(
+    type = "line",
+    y0 = 0,
+    y1 = 1,
+    yref = "paper",
+    x0 = x,
+    x1 = x,
+    line = list(color = color, dash = linetype)
+  )
+}
+
+plot_ly(
+  ma_cc_attendance, 
+  x = ~term, 
+  y = ~enrollment, 
+  color = ~race, 
+  colors = c("turquoise3", "orchid2", "tan2"),
+  type = 'scatter', 
+  mode = 'lines+markers',
+  hoverinfo = 'text',
+  text = ~paste(
+    "Term: ", term, "<br>",
+    "Enrollment:", prettyNum(enrollment, big.mark=","), "<br>",
+    "Race:", race
+  )
+  ) %>% 
+  layout(
+    title = list(
+      text = "<b>MA Community College Enrollment<b>",
+      x = 0.5,
+      y = 0.975
+      ),
+    legend = list(
+      title = list(text = "Student Race"),
+      x = 100, y = 0.15
+      ),
+    xaxis = list(title = ""),
+    yaxis = list(title = "Student Enrolment"),
+    shapes = list(vline("Fall 2020")),
+    annotations = list(
+      x = "Fall 2020",
+      y = 20000,
+      text = "COVID-19 affects <br>enrollment numbers",
+      ax = -70
+    )
+  ) 
+```
+
+
