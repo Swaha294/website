@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Swaha Bhattacharya</title>
+    <link>https://swahabhattacharya.netlify.app/projects/</link>
+    <description>Recent content in Projects on Swaha Bhattacharya</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 29 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://swahabhattacharya.netlify.app/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>complexR R Package</title>
+      <link>https://swahabhattacharya.netlify.app/projects/complexr/</link>
+      <pubDate>Sat, 29 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://swahabhattacharya.netlify.app/projects/complexr/</guid>
+      <description>An R data package that provides functions to easily compute and visualize complex transformations and stereographic projections.</description>
+    </item>
+    
+    <item>
+      <title>Community College Attendance in Massachusetts</title>
+      <link>https://swahabhattacharya.netlify.app/projects/mass-cc/</link>
+      <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://swahabhattacharya.netlify.app/projects/mass-cc/</guid>
+      <description>In March 2023, the Healey-Driscoll administration proposed the MassReconnect program in their budget recommendation for the Fiscal Year 2024. The programaims to make community college free for students aged 25 and older. Keeping this in mind, my team and I created two visualisations to get an insight on POC attendance at community colleges in the state.</description>
+    </item>
+    
+    <item>
+      <title>ipl R Package</title>
+      <link>https://swahabhattacharya.netlify.app/projects/ipl/</link>
+      <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://swahabhattacharya.netlify.app/projects/ipl/</guid>
+      <description>An R data package that provides data and functions related to the Indian Premier League (IPL) matches and standard cricket statistics. This package allows users to avail of IPL data and conduct analysis of cricketers and IPL teams using functions of this package.</description>
+    </item>
+    
+    <item>
+      <title>moderndive R Package</title>
+      <link>https://swahabhattacharya.netlify.app/projects/moderndive/</link>
+      <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://swahabhattacharya.netlify.app/projects/moderndive/</guid>
+      <description>The &lt;code&gt;moderndive&lt;/code&gt; R package consists of datasets and functions for &lt;code&gt;tidyverse&lt;/code&gt;-friendly introductory linear regression. These tools leverage the well-developed tidyverse and broom packages to facilitate.</description>
+    </item>
+    
+    <item>
+      <title>Could the MassReconnect Program Change College Education in Massachusetts?</title>
+      <link>https://swahabhattacharya.netlify.app/projects/mass-cc-map/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://swahabhattacharya.netlify.app/projects/mass-cc-map/</guid>
+      <description> </description>
+    </item>
+    
+  </channel>
+</rss>

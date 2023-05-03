@@ -1,0 +1,367 @@
+---
+title: "Could the MassReconnect Program Change College Education in Massachusetts?"
+author: "Swaha Bhattacharya, Naylynn Tañón Reyes, Tint Tha Ra Wun"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+
+```{r, message=FALSE, include=FALSE}
+library(tidyverse)
+library(leaflet)
+library(sf)
+library(tmaptools)
+library(readxl)
+library(tidycensus)
+library(leaflegend)
+library(plotly)
+ 
+# loading in Mass Community Colleges—Annual Full-Time Equivalent (FTE) Enrollment
+mass_cc_race <- read_xlsx("data-raw/CCMinorityHTC.xlsx") 
+
+# repeating process for mass_cc_race
+
+for (i in 3:ncol(mass_cc_race)) {
+  
+  mass_cc_race[2, i] = paste("Fall", mass_cc_race[2, i])
+  
+}
+
+colnames(mass_cc_race) <- mass_cc_race[2, ]
+
+mass_cc_race <- mass_cc_race[-c(1:2, 138:149), ]
+
+# turning table to tidy format
+mass_cc_race <- mass_cc_race %>% 
+  pivot_longer(
+    cols = -c(Institution, Race),
+    names_to = "term",
+    values_to = "count"
+  ) %>% 
+  janitor::clean_names()
+
+mass_cc_race <- mass_cc_race %>% 
+  mutate(
+    count = parse_number(ifelse(count == "*", 2.5, count))
+  )
+
+mass_cc_race <- mass_cc_race %>% 
+  filter(race != "Total")
+
+# adding county for each community college
+mass_cc_race <- mass_cc_race %>% 
+  mutate(
+    county = case_when(
+      institution == "Berkshire Community College" ~ "Berkshire County",
+      institution == "Bristol Community College" ~ "Bristol County",
+      institution == "Bunker Hill Community College" ~ "Suffolk County",
+      institution == "Cape Cod Community College" ~ "Barnstable County",
+      institution == "Greenfield Community College" ~ "Franklin County",
+      institution == "Holyoke Community College" ~ "Hampden County",
+      institution == "Mass Bay Community College" ~ "Norfolk County",
+      institution == "Massasoit Community College" ~ "Plymouth County",
+      institution == "Middlesex Community College" ~ "Middlesex County",
+      institution == "Mt. Wachusett Community College" ~ "Worcester County",
+      institution == "North Shore Community College" ~ "Essex County",
+      institution == "Northern Essex Community College" ~ "Essex County",
+      institution == "Quinsigamond Community College" ~ "Worcester County",
+      institution == "Roxbury Community College" ~ "Suffolk County",
+      institution == "Springfield Technical Community College" ~ "Hampden County"
+    ),
+    link = case_when(
+      institution == "Berkshire Community College" ~ "https://www.berkshirecc.edu/",
+      institution == "Bristol Community College" ~ "https://www.bristolcc.edu/",
+      institution == "Bunker Hill Community College" ~ "https://www.bhcc.edu/",
+      institution == "Cape Cod Community College" ~ "https://www.capecod.edu/",
+      institution == "Greenfield Community College" ~ "https://www.gcc.mass.edu/",
+      institution == "Holyoke Community College" ~ "https://www.hcc.edu/",
+      institution == "Mass Bay Community College" ~ "https://www.massbay.edu/",
+      institution == "Massasoit Community College" ~ "https://massasoit.edu/",
+      institution == "Middlesex Community College" ~ "https://www.middlesex.mass.edu/",
+      institution == "Mt. Wachusett Community College" ~ "https://mwcc.edu/",
+      institution == "North Shore Community College" ~ "https://www.northshore.edu/",
+      institution == "Northern Essex Community College" ~ "https://www.necc.mass.edu/",
+      institution == "Quinsigamond Community College" ~ "https://www.qcc.edu/",
+      institution == "Roxbury Community College" ~ "https://www.rcc.mass.edu/",
+      institution == "Springfield Technical Community College" ~ "https://www.stcc.edu/"
+    )
+  )
+ 
+# loading mass census data by county
+
+mass_county_census <- read_csv("data-raw/mass_county_census.csv")
+
+# cleaning variable names
+mass_county_census <- mass_county_census %>% 
+  rename(race = "Label (Grouping)") %>% 
+  select(-c("Massachusetts"))
+
+mass_county_colnames <- colnames(mass_county_census) %>% 
+  str_replace(", Massachusetts", "")
+
+colnames(mass_county_census) <- mass_county_colnames
+
+# turning table to tidy format
+mass_county_census <- mass_county_census %>% 
+  pivot_longer(
+    cols = -c(race),
+    names_to = "county",
+    values_to = "count"
+  )
+
+# removing rows with headers or total values
+mass_county_census <- mass_county_census %>% 
+  filter(!(str_detect(race, "\\:"))) 
+
+for (i in 1:nrow(mass_county_census)) {
+  
+  mass_county_census[i, 1] = str_squish(mass_county_census[i, 1])
+  
+}
+ 
+# reading in data
+mass_income_county <- read_xlsx(
+  "data-raw/income-by-county.xlsx",
+  sheet = "Data"
+  )
+
+names_df <- colnames(mass_income_county)
+
+names_new <- c("range", mass_income_county[1, -c(1)])
+
+colnames(mass_income_county) <- names_new
+
+mass_income_county <- mass_income_county[14, ]
+
+mass_income_county <- mass_income_county %>% 
+  pivot_longer(
+    cols = -c("range"),
+    names_to = "type",
+    values_to = "amount"
+  ) %>% 
+  arrange(type)
+
+
+counties <- c()
+
+for (i in names_df) {
+  
+  if (!(str_detect(i, "\\.."))) {
+    counties <- c(counties, i)
+  }
+  
+}
+
+counties <- data.frame(
+  county = rep(counties, 4)
+)
+
+
+mass_income_county <- cbind(mass_income_county, counties)
+
+mass_income_county <- mass_income_county %>% 
+  filter(type == "Households") %>% 
+  mutate(median_income = parse_number(amount)) %>% 
+  select(county, median_income) %>% 
+  mutate(county = str_replace(county, "\\, Massachusetts", ""))
+
+
+mass_income_county <- mass_income_county %>% 
+  mutate(
+    income_level = ifelse(
+      median_income >= .$median_income[.$county == "Massachusetts"], 
+      "above Mass median income",
+      "below Mass median income"
+      )
+  )
+ 
+#attach API key 
+census_api_key("c4a6f1a94b593d5329a67a1a5c556ab917e5ce03", overwrite = TRUE, install = TRUE)
+
+mass_geo_county <- 
+  tidycensus::get_acs(
+    geography = "county", 
+    variables = "B19013_001", 
+    state = "MA",
+    year = 2020, 
+    geometry = TRUE
+  ) |> 
+  # Add centroids to each region using purrr package
+  mutate(
+    lng = purrr::map_dbl(geometry, ~st_centroid(.x)[[1]]),
+    lat = purrr::map_dbl(geometry, ~st_centroid(.x)[[2]])
+  )   
+
+mass_geo_county <- mass_geo_county |> 
+  tidyr::separate(NAME, c("County", "State"), sep = ", ")
+ 
+geocode_OSM("Holyoke Community College, Holyoke, Massachusetts")
+geocode_OSM("Springfield Technical Community College, Springfield, Massachusetts")
+geocode_OSM("Mass Bay Community College")
+geocode_OSM("Massasoit Community College")
+geocode_OSM("Middlesex Community College, Massachusetts")
+geocode_OSM("Bunker Hill Community College")
+geocode_OSM("Roxbury Community College")
+geocode_OSM("Cape Cod Community College")
+geocode_OSM("Mt. Wachusett Community College")
+geocode_OSM("Quinsigamond Community College")
+geocode_OSM("Greenfield Community College")
+geocode_OSM("Bristol Community College")
+geocode_OSM("North Shore Community College")
+geocode_OSM("Northern Essex Community College")
+geocode_OSM("Berkshire Community College")
+
+cc_geo_county <- tibble(
+  name = c("Holyoke Community College", "Springfield Technical Community College", "Mass Bay Community College", "Massasoit Community College", 	
+           "Middlesex Community College", "Bunker Hill Community College", "Roxbury Community College", "Cape Cod Community College", "Mt. Wachusett Community College", "Quinsigamond Community College", "Greenfield Community College", "Bristol Community College", "North Shore Community College", "Northern Essex Community College", "Berkshire Community College"),
+  lng = c(-72.65157, -72.57997, -71.41341, -70.98858, -71.30667, -71.07146, -71.09636, -70.33694, -71.98246, -71.79342, -72.63023, -71.15671, -70.96882, -71.04700, -73.31586), 
+  lat = c(42.19389, 42.10853, 42.29317, 42.07726, 42.64453, 42.37622, 42.32809, 41.69276, 42.59471, 42.31442, 42.59828, 41.70399, 42.59237, 42.79669, 42.45761)
+) 
+
+cc_geo_county_sf <-cc_geo_county   |> 
+  st_as_sf(coords = c("lng", "lat"), crs = 4326) |>
+  # Add centroids to each region using purrr package
+  mutate(
+    lng = purrr::map_dbl(geometry, ~st_centroid(.x)[[1]]),
+    lat = purrr::map_dbl(geometry, ~st_centroid(.x)[[2]])
+  )   
+
+# mass_geo_cc_poc <- cc_geo_county_sf|> 
+#   left_join(
+#     mass_cc_race1,
+#     by = c("name" = "institution")
+# ) 
+
+mass_geo_cc_poc <- cc_geo_county_sf |>
+  mutate(size = "NA")
+ 
+mass_cc_enrolment <- mass_county_census %>% 
+  mutate(
+    is_poc = ifelse(race == "White alone", "white", "poc")
+  ) %>% 
+  group_by(county, is_poc) %>% 
+  summarise(
+    population_poc = sum(count)
+  ) %>% 
+  ungroup() %>% 
+  group_by(county) %>% 
+  mutate(
+    pct_poc = population_poc / sum(population_poc) * 100
+  ) %>% 
+  filter(is_poc != "white") %>% 
+  ungroup()
+
+mass_cc_total <- mass_cc_race %>% 
+  group_by(institution, county, term) %>% 
+  summarise(
+    total_fall_enrolment = sum(count)
+  )
+
+mass_cc_enrolment <- mass_cc_total %>% 
+  filter(term == "Fall 2021") %>% 
+  right_join(
+    mass_cc_enrolment,
+    by = c("county" = "county")
+  ) %>% 
+  mutate(
+    total_fall_enrolment = ifelse(is.na(total_fall_enrolment), 0, total_fall_enrolment)
+  ) %>% 
+  left_join(
+    mass_income_county,
+    by = c("county" = "county")
+  )
+
+mass_cc_st <- mass_geo_county %>% 
+  left_join(mass_cc_enrolment, by = c("County" = "county")) %>% 
+  ungroup()
+ 
+mass_cc_geo <- mass_cc_race %>% 
+  filter(term == "Fall 2021") %>% 
+  mutate(
+    race_sub = case_when(
+      race == "White" ~ "White",
+      race %in% c("Non Resident Alien", "Not Reported") ~ "Unknown",
+      TRUE ~ "POC"
+    )
+  ) %>% 
+  group_by(institution, race_sub, 
+           link
+           ) %>% 
+  summarise(
+    n = sum(count)
+  ) %>% 
+  ungroup() %>%
+  group_by(institution, link) %>%
+  mutate(
+    # total = sum(n),
+    pct = round((n/sum(n)), 4) * 100
+  ) %>% 
+  # select(institution, pct) %>% 
+  right_join(
+    mass_geo_cc_poc,
+    by = c("institution" = "name")
+  ) %>% 
+  filter(
+    race_sub == "POC"
+  )
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+pal_poc <- colorNumeric(
+  palette = c("white", "violetred"),
+  domain = mass_cc_st$pct_poc
+)
+
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(
+    data = mass_cc_st,
+    color = "midnightblue",
+    opacity = 1,
+    weight = 1.2, 
+    fillColor = ~pal_poc(pct_poc),
+    fillOpacity = 0.70,
+    stroke = TRUE,
+    popup = ~paste(
+      County, "<br>",
+      # County, "<br>",
+      "POC Population:", paste0(round(pct_poc, 2), "%")
+    )
+    ) %>%
+  addCircleMarkers(
+    data = mass_cc_geo,
+    stroke = TRUE,
+    weight = 0,
+    # color = "midnightblue",
+    fillColor = "midnightblue",
+    fillOpacity = 0.9,
+    radius = ~(pct/7),
+    popup = ~paste(
+      "<a href = ", mass_cc_geo$link, ">", institution, " </a>", "<br>",
+      "POC Percentage:", paste0(pct, "%"), "<br>"
+    )
+  ) %>%
+    addLegendSize(
+    values = mass_cc_geo$pct,
+    strokeWidth = 0,
+    shape = "circle",
+    color = "midnightblue",
+    fillColor = "midnightblue",
+    opacity = 1,
+    baseSize = 7,
+    position = "bottomleft",
+    title = "POC Community College Enrollment (in %)",
+    orientation = "horizontal"
+  ) %>% 
+  addLegendNumeric(
+    position = "bottomleft",
+    pal = pal_poc,
+    values = mass_cc_st$pct_poc,
+    title = "POC Population (in %)",
+    bins = 10
+  ) 
+
+```
+
+
+

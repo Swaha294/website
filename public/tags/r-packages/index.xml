@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R Packages on Swaha Bhattacharya</title>
+    <link>https://swahabhattacharya.netlify.app/tags/r-packages/</link>
+    <description>Recent content in R Packages on Swaha Bhattacharya</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 29 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://swahabhattacharya.netlify.app/tags/r-packages/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>complexR R Package</title>
+      <link>https://swahabhattacharya.netlify.app/projects/complexr/</link>
+      <pubDate>Sat, 29 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://swahabhattacharya.netlify.app/projects/complexr/</guid>
+      <description>An R data package that provides functions to easily compute and visualize complex transformations and stereographic projections.</description>
+    </item>
+    
+    <item>
+      <title>ipl R Package</title>
+      <link>https://swahabhattacharya.netlify.app/projects/ipl/</link>
+      <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://swahabhattacharya.netlify.app/projects/ipl/</guid>
+      <description>An R data package that provides data and functions related to the Indian Premier League (IPL) matches and standard cricket statistics. This package allows users to avail of IPL data and conduct analysis of cricketers and IPL teams using functions of this package.</description>
+    </item>
+    
+    <item>
+      <title>moderndive R Package</title>
+      <link>https://swahabhattacharya.netlify.app/projects/moderndive/</link>
+      <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://swahabhattacharya.netlify.app/projects/moderndive/</guid>
+      <description>The &lt;code&gt;moderndive&lt;/code&gt; R package consists of datasets and functions for &lt;code&gt;tidyverse&lt;/code&gt;-friendly introductory linear regression. These tools leverage the well-developed tidyverse and broom packages to facilitate.</description>
+    </item>
+    
+  </channel>
+</rss>
