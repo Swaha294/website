@@ -21,18 +21,4 @@ and stereographic projections on complex numbers. The package allows users to
 visualize such transformations on a multiple domains, including circles, discs, 
 and quadrilaterals. 
 
-- `circle_transform()` performs and visualizes any kind of transformation on 
-circles
-
-- `line_transform()` performs and visualizes any kind of transformation on lines
-
-- `quad_transform()` performs and visualizes any kind of transformation on 
-squares and rectangles
-
-- `disc_transform()` performs and visualizes any kind of transformation on discs
-
-- `plane_to_sphere()` and `sphere_to_plane()` compute stereographic projections
-
-- `st_sphere_plot()` and `st_plane_plot()` visualize them.
-
 
