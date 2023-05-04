@@ -118,7 +118,7 @@ plot_ly(
       x = 100, y = 0.15
       ),
     xaxis = list(title = ""),
-    yaxis = list(title = "Student Enrolment"),
+    yaxis = list(title = "Student enrollment"),
     shapes = list(vline("Fall 2020")),
     annotations = list(
       x = "Fall 2020",

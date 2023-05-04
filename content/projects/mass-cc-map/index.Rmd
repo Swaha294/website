@@ -237,7 +237,7 @@ cc_geo_county_sf <-cc_geo_county   |>
 mass_geo_cc_poc <- cc_geo_county_sf |>
   mutate(size = "NA")
  
-mass_cc_enrolment <- mass_county_census %>% 
+mass_cc_enrollment <- mass_county_census %>% 
   mutate(
     is_poc = ifelse(race == "White alone", "white", "poc")
   ) %>% 
@@ -256,17 +256,17 @@ mass_cc_enrolment <- mass_county_census %>%
 mass_cc_total <- mass_cc_race %>% 
   group_by(institution, county, term) %>% 
   summarise(
-    total_fall_enrolment = sum(count)
+    total_fall_enrollment = sum(count)
   )
 
-mass_cc_enrolment <- mass_cc_total %>% 
+mass_cc_enrollment <- mass_cc_total %>% 
   filter(term == "Fall 2021") %>% 
   right_join(
-    mass_cc_enrolment,
+    mass_cc_enrollment,
     by = c("county" = "county")
   ) %>% 
   mutate(
-    total_fall_enrolment = ifelse(is.na(total_fall_enrolment), 0, total_fall_enrolment)
+    total_fall_enrollment = ifelse(is.na(total_fall_enrollment), 0, total_fall_enrollment)
   ) %>% 
   left_join(
     mass_income_county,
@@ -274,7 +274,7 @@ mass_cc_enrolment <- mass_cc_total %>%
   )
 
 mass_cc_st <- mass_geo_county %>% 
-  left_join(mass_cc_enrolment, by = c("County" = "county")) %>% 
+  left_join(mass_cc_enrollment, by = c("County" = "county")) %>% 
   ungroup()
  
 mass_cc_geo <- mass_cc_race %>% 
