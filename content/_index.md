@@ -1,6 +1,6 @@
 ---
 title: "Swaha Bhattacharya"
-subtitle: "Senior at Smith College. Double Major in Mathematics & Statistical and Data Sciences"
+subtitle: "Data Scientist at HSB leveraging statistical modeling, machine learning, and GenAI to develop ethical data-driven solutions to business problems. \n Double Major in Mathematics & Statistical and Data Sciences"
 description: "Hi, I'm Swaha. This is my personal website that serves as my playground + portfolio."
 images:
   - img/headshot.jpg
