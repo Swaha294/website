@@ -128,7 +128,7 @@ enableEmoji = true
   [[menu.header]]
     name = "resume"
     title = "Resume"
-    url = "/resume/resume.pdf"
+    url = "/resume/SwahaBhattacharya_Resume.pdf"
     weight = 2
   [[menu.header]]
     name = "projects"
