@@ -58,7 +58,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://swahabhattacharya.netlify.app/projects/mass-cc-map/</guid>
-      <description>In March 2023, the Healey-Driscoll administration proposed the MassReconnect program in their budget recommendation for the Fiscal Year 2024. The programaims to make community college free for students aged 25 and older. Keeping this in mind, my team and I created two visualisations to get an insight on POC attendance at community colleges in the state.</description>
+      <description>A Leaflet map visualizing POC attendance in community colleges in Massachusetts.</description>
     </item>
     
     <item>
@@ -67,7 +67,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://swahabhattacharya.netlify.app/projects/mass-cc-graph/</guid>
-      <description> </description>
+      <description>A plotly graph visualizing enrollment at community colleges in Massachusetts by race.</description>
     </item>
     
   </channel>

@@ -1,7 +1,7 @@
 ---
 title: "Swaha Bhattacharya"
 subtitle: "Data Scientist at HSB, a reinsurance company."
-description: "Hi, I'm Swaha. This is my personal website that serves as my playground + portfolio."
+description: "Hi, I'm Swaha. I have a keen interest in math, machine learning, history, and singing. You can learn more about me by visiting the [About](/about/) tab or viewing my [GitHub profile](https://github.com/Swaha294)."
 images:
   - img/headshot.jpg
 image_left: true

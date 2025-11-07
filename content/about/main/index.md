@@ -12,7 +12,7 @@ intro: |
   
   Before this, I graduated with a double major in Mathematics, and Statistical and Data Scienes from Smith College. You can learn more about my projects by visiting the [projects](/projects/) tab or viewing my [GitHub profile](https://github.com/Swaha294). 
   
-  Outside of college, I spend my time singing (my [singing channel](https://www.instagram.com/swa_laalaalaa/)), making LEGO models, reading, and learning new instruments, and doing yoga.
+  Outside of college, I spend my time [singing](https://www.instagram.com/swa_laalaalaa/), making LEGO models, reading, learning new instruments, and doing yoga.
   
   Feel free to contact me via [email](mailto::itsswahabhattacharya@gmail.com) or on [LinkedIn](https://www.linkedin.com/in/swaha294/)!
 ---
